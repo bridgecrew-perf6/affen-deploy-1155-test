@@ -1,4 +1,5 @@
 .env
 deploy.log
+scripts/variables.json
 build/
 node_modules/
