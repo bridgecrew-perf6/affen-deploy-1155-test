@@ -11,6 +11,8 @@ contract AmW1155 is ERC1155, AccessControl, ERC1155Burnable, ERC1155Supply {
     bytes32 public constant URI_SETTER_ROLE = keccak256("URI_SETTER_ROLE");
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
+    string public name = "AmW1155to721";
+
     constructor()
         ERC1155("http://amw-1155.s3-website.us-east-2.amazonaws.com/json/")
     {
@@ -61,6 +63,12 @@ contract AmW1155 is ERC1155, AccessControl, ERC1155Burnable, ERC1155Supply {
             abi.encodePacked(base, Strings.toString(id), ".json")
         );
     }
+
+    function contractURI() public pure returns (string memory) {
+        return "http://amw-1155.s3-website.us-east-2.amazonaws.com/json/AmW1155_contract_metadata.json";
+    }
+
+
 
     // ******************************************* FOR DEV ENV ONLY *************************************************
     function destroyContract(address payable addr) external onlyRole(DEFAULT_ADMIN_ROLE) {
